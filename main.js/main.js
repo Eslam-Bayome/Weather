@@ -7,6 +7,91 @@ const third = document.getElementById("third");
 const containerSlides = document.getElementById("allslides");
 
 // display today
+
+///!=============================================================  your location data
+
+function getCurrentWeather() {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+}
+
+async function currData() {
+  try {
+    let data = await getCurrentWeather();
+    let lat = data.coords?.latitude;
+    let lng = data.coords?.longitude;
+
+    let countryName = await fetch(
+      `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=4f0a3828270445698a15a0490b3c8be2`
+    );
+
+    let countryData = await countryName.json();
+
+    return countryData.results[0].components.city;
+  } catch (err) {
+    tomorrow.classList.add("warrning");
+    tomorrow.innerHTML = `You need to Search for Country Or allow access to Your Current Location`;
+    throw new Error(err);
+  }
+}
+
+(async function () {
+  try {
+    let cityData = await currData();
+    let weatherToday = await fetch(
+      `https://api.weatherapi.com/v1/forecast.json?key=a629727795254be0b79155312241301&q=${cityData}&days=7`
+    );
+    if (!weatherToday.ok) {
+      throw new Error("there is a proplem in getting data");
+    }
+    let dataToday = await weatherToday.json();
+    console.log(dataToday);
+    console.log(dataToday.current);
+    displayWeather(dataToday.current, cityData);
+    displayOtherDays(dataToday.forecast.forecastday[1], tomorrow);
+    displayOtherDays(dataToday.forecast.forecastday[2], third);
+  } catch (er) {
+    console.log(er);
+  }
+})();
+
+///!=============================================================  search country data
+
+searchBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  today.classList.remove("d-none");
+  third.classList.remove("d-none");
+  tomorrow.classList.remove("warrning");
+  let cityName = labelCity.value;
+  getWeather(cityName);
+});
+
+async function getWeather(city) {
+  try {
+    let weatherDate = await fetch(
+      `https://api.weatherapi.com/v1/forecast.json?key=a629727795254be0b79155312241301&q=${city}&days=7`
+    );
+    if (!weatherDate.ok) {
+      throw new Error(
+        `there is no country with this name please Fix the name `
+      );
+    }
+    let dataWe = await weatherDate.json();
+
+    displayWeather(dataWe.current, city);
+
+    displayOtherDays(dataWe.forecast.forecastday[1], tomorrow);
+    displayOtherDays(dataWe.forecast.forecastday[2], third);
+  } catch (e) {
+    today.classList.add("d-none");
+    third.classList.add("d-none");
+    tomorrow.classList.add("warrning");
+    tomorrow.innerHTML = e.message;
+  }
+}
+
+//! =============================== To Display the data =====================================
 let displayWeather = function (data, cityData) {
   let city = cityData;
   let degree = data.temp_c;
@@ -57,64 +142,6 @@ let displayWeather = function (data, cityData) {
   today.innerHTML = html;
 };
 
-function getCurrentWeather() {
-  return new Promise(function (resolve, reject) {
-    navigator.geolocation.getCurrentPosition(resolve, reject);
-  });
-}
-
-async function currData() {
-  try {
-    let data = await getCurrentWeather();
-    let lat = data.coords?.latitude;
-    let lng = data.coords?.longitude;
-
-    let countryName = await fetch(
-      `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=4f0a3828270445698a15a0490b3c8be2`
-    );
-
-    let countryData = await countryName.json();
-
-    return countryData.results[0].components.city;
-  } catch (err) {
-    tomorrow.classList.add("warrning");
-    tomorrow.innerHTML = `You need to Search for Country Or allow access to Your Current Location`;
-    throw new Error(err);
-  }
-}
-///!=============================================================
-
-(async function () {
-  try {
-    let cityData = await currData();
-    let weatherToday = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=a629727795254be0b79155312241301&q=${cityData}&days=7`
-    );
-    if (!weatherToday.ok) {
-      throw new Error("there is a proplem in getting data");
-    }
-    let dataToday = await weatherToday.json();
-    console.log(dataToday);
-    console.log(dataToday.current);
-    displayWeather(dataToday.current, cityData);
-    displayOtherDays(dataToday.forecast.forecastday[1], tomorrow);
-    displayOtherDays(dataToday.forecast.forecastday[2], third);
-  } catch (er) {
-    console.log(er);
-  }
-})();
-
-///!=============================================================
-
-searchBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  today.classList.remove("d-none");
-  third.classList.remove("d-none");
-  tomorrow.classList.remove("warrning");
-  let cityName = labelCity.value;
-  getWeather(cityName);
-});
-
 function displayOtherDays(notAllData, docu) {
   let data = notAllData.day;
   let degree = data.avgtemp_c;
@@ -152,27 +179,4 @@ function displayOtherDays(notAllData, docu) {
 </div>`;
   console.log(html);
   docu.innerHTML = html;
-}
-async function getWeather(city) {
-  try {
-    let weatherDate = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=a629727795254be0b79155312241301&q=${city}&days=7`
-    );
-    if (!weatherDate.ok) {
-      throw new Error(
-        `there is no country with this name please Fix the name `
-      );
-    }
-    let dataWe = await weatherDate.json();
-
-    displayWeather(dataWe.current, city);
-
-    displayOtherDays(dataWe.forecast.forecastday[1], tomorrow);
-    displayOtherDays(dataWe.forecast.forecastday[2], third);
-  } catch (e) {
-    today.classList.add("d-none");
-    third.classList.add("d-none");
-    tomorrow.classList.add("warrning");
-    tomorrow.innerHTML = e.message;
-  }
 }
