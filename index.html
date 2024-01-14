@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <link rel="stylesheet" href="main.css/bootstrap.min.css" />
+    <link rel="stylesheet" href="main.css/all.min.css" />
+    <link rel="stylesheet" href="main.css/main.css" />
+    <link rel="icon" href="Img/logo.ico" />
+    <script src="main.js/bootstrap.bundle.min.js" defer></script>
+    <script src="main.js/main.js" defer></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#"
+          ><img src="Img/logo.png" class="w-100" alt="logo" />
+          <div class="px-3">
+            <p class="fs-6 fw-bold my-0">Weather</p>
+            <p class="my-0 small">tagline goes here</p>
+          </div>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fs-6">
+            <li class="nav-item mx-2">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="#">News</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link mx-2" href="#">Live Cameras</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="#">Photo</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <form action="" class="container">
+        <input
+          type="text"
+          class="form-control rounded-pill"
+          id="labelCity"
+          placeholder="  Find Your location..."
+        />
+        <button id="searchBtn" class="btn rounded-pill search">Find</button>
+      </form>
+
+      <section class="container">
+        <div class="cursor row g-1 position-relative" id="allslides">
+          <div class="col-md-4" id="today" data-slide="1"></div>
+          <div class="col-md-4" id="tomorrow" data-slide="2"></div>
+          <div class="col-md-4" id="third" data-slide="3"></div>
+        </div>
+      </section>
+    </main>
+    <footer class="container">
+      <div class="row">
+        <div class="col-md-8 position-relative">
+          <input
+            type="text"
+            name="Sub"
+            id="Sub"
+            class="form-control rounded-pill"
+            placeholder=" Enter Your Email To Subscribe..."
+          />
+          <button class="btn rounded-pill search position-absolute">
+            Subscribe
+          </button>
+          <p>
+            Copyright 2014 Company name. Designed by Themezy. All rights
+            reserved
+          </p>
+        </div>
+        <div class="col-md-4">
+          <div class="d-flex align-items-center justify-content-center m-2">
+            <a
+              href="#"
+              class="d-flex align-items-center justify-content-center me-2"
+            >
+              <i class="fa-brands fa-facebook fa-xl"></i>
+            </a>
+
+            <a
+              href="#"
+              class="d-flex align-items-center justify-content-center me-2"
+            >
+              <i class="fa-brands fa-x-twitter fa-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="d-flex align-items-center justify-content-center me-2"
+            >
+              <i class="fa-brands fa-google-plus-g fa-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="d-flex align-items-center justify-content-center me-2"
+            >
+              <i class="fa-brands fa-pinterest fa-xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

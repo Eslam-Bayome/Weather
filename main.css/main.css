@@ -1,0 +1,177 @@
+:root {
+  --main-color: RGB(0, 154, 216);
+}
+
+nav {
+  min-height: 110px;
+  color: white !important;
+  /* margin-bottom: 60px; */
+}
+nav .small {
+  font-size: 12px;
+}
+
+a {
+  color: white !important;
+  padding: 2px 20px !important;
+  font-size: 16px !important;
+  border: none !important;
+  border-radius: 100px;
+  border: 2px solid transparent !important;
+}
+nav ul li a:hover:not(.active) {
+  border: 2px solid var(--main-color) !important;
+  border-radius: 100px;
+  color: var(--main-color) !important ;
+  font-size: 16px !important;
+}
+
+nav .active {
+  border: 2px solid var(--main-color) !important;
+  border-radius: 100px;
+  color: var(--main-color) !important ;
+  font-weight: 600;
+}
+
+main {
+  background-image: url(../Img/banner.png);
+  background-position: top center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #1e202b;
+}
+
+/* =========================== */
+main .box {
+  background-color: #323544 !important;
+  padding: 0 !important;
+  min-height: 370px;
+}
+
+main .box .midBox .city {
+  color: RGB(191, 193, 200);
+  font-size: 18px;
+}
+main .box .headBox {
+  background-color: #2d303d;
+  color: RGB(191, 193, 200);
+}
+main .box .midBox .degree {
+  font-size: 60px;
+  padding: 0 !important ;
+  margin: 0 !important;
+  position: relative;
+  font-weight: 700;
+}
+main .box .midBox .degree span {
+  padding: 0 !important ;
+  margin: 0 !important;
+  /* position: absolute; */
+  font-size: 40px;
+  align-self: flex-start;
+}
+main .box .midBox .degree img {
+  height: 90px !important;
+}
+main .box .midBox .cloud {
+  margin-top: 20px;
+  color: RGB(0, 154, 216);
+  font-size: 14px;
+}
+main .box .bottomBox {
+  color: RGB(191, 193, 200);
+}
+
+main form {
+  position: relative;
+  padding-block: 60px;
+}
+.city {
+  text-transform: capitalize;
+  flex-direction: column;
+}
+
+main form input {
+  background-color: #1e202b !important;
+  color: white !important ;
+  padding: 15px !important;
+}
+
+::placeholder {
+  color: gray !important;
+}
+
+main form .search {
+  background-color: var(--main-color) !important;
+  color: white !important;
+  position: absolute;
+  top: 68px;
+  right: 24px;
+  padding: 6px 30px;
+}
+
+main form .location {
+  background-color: var(--main-color) !important;
+  color: rgb(255, 255, 255) !important;
+  position: absolute;
+  top: 68px;
+  right: 120px;
+  padding: 6px 30px;
+}
+
+section .cursor .box {
+  padding: 20px;
+  background-color: aliceblue;
+}
+
+section {
+  padding-bottom: 80px;
+}
+footer input {
+  background-color: #1e202b !important;
+  padding: 15px !important;
+}
+footer {
+  margin-top: 60px;
+}
+body {
+  background-color: #262936;
+}
+footer button {
+  background-color: var(--main-color) !important;
+  color: white !important;
+  top: 9px;
+  right: 24px;
+  padding: 6px 30px !important;
+}
+footer p {
+  margin-top: 40px;
+  color: RGB(191, 193, 200);
+  font-size: 14px;
+}
+footer a {
+  width: 45px;
+  height: 45px;
+  background-color: black;
+  color: var(--main-color) !important;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: 0.2s;
+}
+footer a:hover {
+  background-color: var(--main-color);
+  color: white !important;
+}
+
+.warrning {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 61, 61);
+  font-size: 24px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  min-height: 200px;
+  text-align: center;
+  margin: auto;
+  justify-content: center;
+}
